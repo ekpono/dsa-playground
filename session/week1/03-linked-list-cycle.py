@@ -23,6 +23,7 @@ def hasCycle(self, head):
 
         if head is None:
             return False
+
         fast = head.next
         slow = head
 
