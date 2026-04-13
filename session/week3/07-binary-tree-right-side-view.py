@@ -7,20 +7,7 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
-    # def crawler(self, node, result):
-    #     if node is None:
-    #         return None
 
-
-    #     right = self.crawler(node.right, result)
-    #     left = self.crawler(node.left, result)
-
-    #     if right:
-    #         result.append(node.val)
-    #     else:
-    #         result.append(node.val)
-    #     return node
-    # def crawler(self, left, right):
 
 
     def rightSideView(self, root):
