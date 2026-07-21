@@ -12,6 +12,12 @@ but if course prerequite takes back to a course that is already being taken, the
 
 
 """
+# defaultdict(list)
+# graph = {}
+# for a, b in prerequisites:
+#     if a not in graph:
+#         graph[a] = []
+#     graph[a].append(b)
 class Solution(object):
     def canFinish(self, numCourses, prerequisites):
         """
@@ -46,30 +52,40 @@ class Solution(object):
         # 3 → 2 → 4
         # 4 → []
 
-        graph = collections.defaultdict(list)
+        graph = {}
         state = [0] * numCourses
 
         for a, b in prerequisites:
+            if a not in graph:
+                graph[a] = []
             graph[a].append(b)
 
+        # graph = defaultdict(list)
+
+        # for a, b in prerequisites:
+        #     graph[a].append(b)
 
         def dfs(course):
             if state[course] == 1:
                 return False
+
             if state[course] == 2:
                 return True
 
             state[course] = 1
 
-            for nei in graph[course]:
-                if not dfs(nei):
-                    return False
+            if course in graph:
+                for nei in graph[course]:
+                    if not dfs(nei):
+                        return False
 
             state[course] = 2
+
             return True
 
-        for c in range(numCourses):
-            if not dfs(c):
+
+        for i in range(numCourses):
+            if not dfs(i):
                 return False
 
         return True
